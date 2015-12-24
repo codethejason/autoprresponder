@@ -10,7 +10,7 @@ if ($_POST['payload']) {
     $pullrequestID = $payload['number'];
     $username = $payload['pull_request']['user']['login'];
 
-    $url = 'https://api.github.com/repos/fossasia/gci15.fossasia.org/issues/'.$pullrequestID.'/comments';
+    $url = 'https://api.github.com/repos/codethejason/gci15.fossasia.org/issues/'.$pullrequestID.'/comments';
 
     $token = file_get_contents('token');
 
@@ -30,7 +30,6 @@ if ($_POST['payload']) {
     ));                                                                                                                   
 
     $result = curl_exec($ch);
-    print_r($result);
     curl_close($ch);
   }
 }
