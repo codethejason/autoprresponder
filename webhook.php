@@ -4,6 +4,7 @@ if ($_POST['payload']) {
 
   $payload = json_decode($_POST['payload']);
   $action = $payload['action'];//since API alerts on other stuff like "assigned", "unassigned", "labeled", "unlabeled", "opened", "closed", or "reopened", or "synchronize"
+  $secret = file_get_contents('secretkey');
   
   if($action == 'opened') { 
 
@@ -27,10 +28,12 @@ if ($_POST['payload']) {
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(                                                                          
         "Content-Type: application/json",
         "Authorization: token $token"
-    ));                                                                                                                   
-
+    ));            
+    
     $result = curl_exec($ch);
+    print_r($result);
     curl_close($ch);
+    
   }
 }
 ?>
