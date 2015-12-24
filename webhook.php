@@ -12,6 +12,8 @@ if ($_POST['payload']) {
 
     $url = 'https://api.github.com/repos/fossasia/gci15.fossasia.org/issues/'.$pullrequestID.'/comments';
 
+    $token = file_get_contents('token');
+
     $data = array(    
       "body" => "http://".$username.".github.io/gci15.fossasia.org"
     );                                                                    
@@ -23,8 +25,8 @@ if ($_POST['payload']) {
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);                                                                      
     curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0');                                                                      
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(                                                                          
-        'Content-Type: application/json',
-        'Authorization: token x'
+        "Content-Type: application/json",
+        "Authorization: token $token"
     ));                                                                                                                   
 
     $result = curl_exec($ch);
