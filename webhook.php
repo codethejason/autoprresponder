@@ -10,8 +10,9 @@ $ch = curl_init('https://api.github.com/repos/octocat/Hello-World/issues/229/com
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");                                                                     
 curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);                                                                  
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);                                                                      
+curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0');                                                                      
 curl_setopt($ch, CURLOPT_HTTPHEADER, array(                                                                          
-    'Content-Type: application/json',                                                                                
+    'Content-Type: application/json',                                                                              
     'Content-Length: ' . strlen($data_string))                                                                       
 );                                                                                                                   
                                                                                                                      
