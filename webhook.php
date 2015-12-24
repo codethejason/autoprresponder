@@ -6,7 +6,7 @@ if ($_POST['payload']) {
   $action = $payload['action'];//since API alerts on other stuff like "assigned", "unassigned", "labeled", "unlabeled", "opened", "closed", or "reopened", or "synchronize"
   $secret = file_get_contents('secretkey');
   
-  if($action == 'opened') { 
+  if($action == 'opened' || $action == 'reopened') { 
 
     $pullrequestID = $payload['number'];
     $username = $payload['pull_request']['user']['login'];
