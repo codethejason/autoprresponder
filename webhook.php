@@ -1,8 +1,9 @@
 <?php
 
-if ($_POST['payload']) {
+$payload = file_get_contents('php://input');
+if ($payload) {
 
-  $payload = json_decode($_POST['payload']);
+  $payload = json_decode($payload);
   $action = $payload['action'];//since API alerts on other stuff like "assigned", "unassigned", "labeled", "unlabeled", "opened", "closed", or "reopened", or "synchronize"
   $secret = file_get_contents('secretkey');
   
