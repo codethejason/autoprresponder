@@ -1,4 +1,8 @@
 <?php
+$config = array(
+  'user' => 'codethejason',
+  'repository' => 'gci15.fossasia.org'
+);
 
 $payloadJSON = file_get_contents('php://input');
 
