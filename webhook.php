@@ -6,8 +6,9 @@ if (isset($payloadJSON)) {
 
   $payload = json_decode($payloadJSON, true);
   $action = $payload['action'];//since API alerts on other stuff like "assigned", "unassigned", "labeled", "unlabeled", "opened", "closed", or "reopened", or "synchronize"
-
-  if($action == 'opened' || $action == 'reopened') { 
+  $branch = $payload['pull_request']['head']['ref'];
+  
+  if($branch == 'gh-pages' && ($action == 'opened' || $action == 'reopened')) { 
 
     $pullrequestID = $payload['number'];
     $username = $payload['pull_request']['user']['login'];
@@ -39,6 +40,8 @@ if (isset($payloadJSON)) {
       echo "Success! Commented for {$username} on pull request id {$pullrequestID}.";
 
     }
+  } else {
+    echo "This action does not qualify for a comment.";
   }
 }
-?>
+
