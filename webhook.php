@@ -17,7 +17,7 @@ if (isset($payloadJSON)) {
     $pullrequestID = $payload['number'];
     $username = $payload['pull_request']['user']['login'];
 
-    $url = 'https://api.github.com/repos/'.$config['user'].'/'.$config['repository']'.'/issues/'.$pullrequestID.'/comments';
+    $url = "https://api.github.com/repos/".$config['user']."/".$config['repository']."/issues/".$pullrequestID."/comments";
     $secretStuff = json_decode(file_get_contents('secret.json'), true);
     $token = $secretStuff['token'];
     $key = "sha1=".hash_hmac('sha1', $payloadJSON, $secretStuff['githubkey']);
