@@ -17,7 +17,7 @@ if (isset($payloadJSON)) {
     $pullrequestID = $payload['number'];
     $username = $payload['pull_request']['user']['login'];
 
-    $url = 'https://api.github.com/repos/codethejason/gci15.fossasia.org/issues/'.$pullrequestID.'/comments';
+    $url = 'https://api.github.com/repos/'.$config['user'].'/'.$config['repository']'.'/issues/'.$pullrequestID.'/comments';
     $secretStuff = json_decode(file_get_contents('secret.json'), true);
     $token = $secretStuff['token'];
     $key = "sha1=".hash_hmac('sha1', $payloadJSON, $secretStuff['githubkey']);
@@ -27,7 +27,7 @@ if (isset($payloadJSON)) {
       $httpheaders = array("Content-Type: application/json", "Authorization: token {$token}");
 
       $data = array(
-        "body" => "http://".$username.".github.io/gci15.fossasia.org"
+        "body" => "http://".$username.".github.io/{$config['repository']}"
       ); 
 
       $data_string = json_encode($data);                                                                                   
